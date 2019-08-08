@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import { ADD_TODO } from "../redux/constants/ActionTypes";
 import { connect } from "react-redux";
+import { addTodo } from "../redux/actions/index";
 
 class TodoTextInput extends Component {
   state = {
@@ -14,12 +14,12 @@ class TodoTextInput extends Component {
   };
 
   handleSubmit = e => {
-    if(e.charCode === 13){
-      this.props.dispatch({type:ADD_TODO, content: this.state.value})
+    if (e.charCode === 13) {
+      this.props.addTodo(this.state.value);
       e.preventDefault();
       this.setState({
-        value:''
-      })
+        value: ""
+      });
     }
   };
 
@@ -46,4 +46,7 @@ class TodoTextInput extends Component {
   }
 }
 
-export default connect()(TodoTextInput);
+export default connect(
+  null,
+  { addTodo }
+)(TodoTextInput);

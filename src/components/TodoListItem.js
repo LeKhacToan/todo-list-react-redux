@@ -1,17 +1,17 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { DELETE_TODO,TOGGLE_COMPLETED } from "../redux/constants/ActionTypes";
-
+import { deleteTodo, toggleCompleted } from "../redux/actions/index";
 
 class TodoListItem extends Component {
 
   handleDelete(id) {
-    this.props.dispatch({type: DELETE_TODO, id});
+    this.props.deleteTodo(id);
   }
 
   handleChecked(id) {
-    this.props.dispatch({type:TOGGLE_COMPLETED,id});
+    this.props.toggleCompleted(id);
   }
+//loi o check chu ko phai toggle comple
 
   render() {
     const { todo } = this.props;
@@ -19,8 +19,13 @@ class TodoListItem extends Component {
       <li className="collection-item">
         {todo.content}
         <label className="right">
-          <input type="checkbox" defaultChecked={todo.completed} onChange={() => this.handleChecked(todo.id)} />
+          <input
+            type="checkbox"
+            checked={todo.completed}
+            onChange={() => this.handleChecked(todo.id)}
+          />
           <span />
+          
           <label className="right">
             <i
               className="material-icons"
@@ -35,4 +40,7 @@ class TodoListItem extends Component {
   }
 }
 
-export default connect()(TodoListItem);
+export default connect(
+  null,
+  { deleteTodo, toggleCompleted }
+)(TodoListItem);
