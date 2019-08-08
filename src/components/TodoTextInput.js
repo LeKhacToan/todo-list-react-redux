@@ -14,7 +14,7 @@ class TodoTextInput extends Component {
   };
 
   handleSubmit = e => {
-    if (e.charCode === 13) {
+    if (e.charCode === 13 && this.state.value != "") {
       this.props.addTodo(this.state.value);
       e.preventDefault();
       this.setState({

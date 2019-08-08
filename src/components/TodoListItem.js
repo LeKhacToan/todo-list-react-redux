@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { deleteTodo, toggleCompleted } from "../redux/actions/index";
 
 class TodoListItem extends Component {
-
   handleDelete(id) {
     this.props.deleteTodo(id);
   }
@@ -11,13 +10,15 @@ class TodoListItem extends Component {
   handleChecked(id) {
     this.props.toggleCompleted(id);
   }
-//loi o check chu ko phai toggle comple
 
   render() {
     const { todo } = this.props;
     return (
       <li className="collection-item">
-        {todo.content}
+        <a href="#modal1" className="modal-trigger black-text">
+          {" "}
+          {todo.content}{" "}
+        </a>
         <label className="right">
           <input
             type="checkbox"
@@ -25,7 +26,7 @@ class TodoListItem extends Component {
             onChange={() => this.handleChecked(todo.id)}
           />
           <span />
-          
+
           <label className="right">
             <i
               className="material-icons"
