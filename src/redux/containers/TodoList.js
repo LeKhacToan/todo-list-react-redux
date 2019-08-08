@@ -12,7 +12,8 @@ class TodoList extends Component {
     var result = "You dont have todo";
     if (todoList.length > 0) {
       result = todoList.map((todo, index) => {
-        return <TodoListItem key={index} todo={todo} />;
+        return (
+        <TodoListItem key={index} todo={todo} />  );
       });
     }
     return result;

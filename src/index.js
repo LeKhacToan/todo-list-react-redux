@@ -8,7 +8,8 @@ import { createStore } from "redux";
 import rootReducer from "./redux/reducers/index";
 
 const store = createStore(rootReducer);
-
+const todo = {id: 1, content: "thu edit todo xem sao"}
+store.dispatch({type:"EDIT_TODO", todo});
 ReactDOM.render(
   <Provider store={store}>
     <App />

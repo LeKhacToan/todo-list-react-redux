@@ -1,5 +1,6 @@
 import {
   ADD_TODO,
+  EDIT_TODO,
   TOGGLE_COMPLETED,
   DELETE_TODO
 } from "../constants/ActionTypes";
@@ -37,6 +38,11 @@ const todoReducer = (state = intialState, action) => {
         content: action.content,
         completed: false
       });
+    case EDIT_TODO:
+      return state.map(todo => {
+        if(todo.id !== action.todo.id) return todo;
+        return {...todo,content: action.todo.content}
+      })
 
     case DELETE_TODO:
       return state.filter(todo => {

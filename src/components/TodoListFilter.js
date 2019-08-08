@@ -4,19 +4,19 @@ import {
   SHOW_ACTIVE,
   SHOW_COMPLETED
 } from "../redux/constants/FilterTypes";
-import { connect } from "react-redux";
 
 class TodoListFilter extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {value: SHOW_ALL};
-
     this.handleChange = this.handleChange.bind(this);
   }
 
   handleChange(e) {
-    this.props.dispatch({type:e.target.value});
+    const value = e.target.value;
+    if(value === SHOW_ACTIVE) this.props.showActive();
+    else if(value === SHOW_COMPLETED) this.props.showCompleted();
+    else if(value === SHOW_ALL) this.props.showAll()
   };
 
   render() {
@@ -34,9 +34,5 @@ class TodoListFilter extends Component {
     );
   }
 }
-const mapStateToProps = state =>{
-    return {
-        state: state
-    }
-}
-export default connect(mapStateToProps)(TodoListFilter);
+
+export default TodoListFilter;
