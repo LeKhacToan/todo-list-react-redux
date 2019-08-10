@@ -1,20 +1,19 @@
 import React, { Component } from "react";
-import { connect } from "react-redux";
 
 class TodoListEdit extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
-      value: ""
-    }
+      value: this.props.todo.content
+    };
   }
- 
-  handleChange = (e) => {
-    console.log(e.target.value)
+
+  handleChange = e => {
+    console.log(e.target.value);
     this.setState({
       value: e.target.value
     });
-  }
+  };
 
   // handleSubmit(e) {
   //   if (this.state.value !== "") {
@@ -23,17 +22,16 @@ class TodoListEdit extends Component {
   //   }
   // }
   render() {
-    console.log(this.props.todoValue.content);
     return (
-      <div id="modal1" className="modal">
+      <div id={"modal" + this.props.todo.id} className="modal">
         <div className="modal-content">
-          <h4>Edit todo</h4>
+          <h4>Edit todo {this.props.todo.id}</h4>
           <div className="input-field col s12">
             <input
               type="text"
               id="autocomplete-input"
               className="autocomplete"
-              value ={this.state.value}
+              value={this.state.value}
               onChange={this.handleChange}
             />
             <p className="red-text">Khong duoc rong</p>
@@ -41,7 +39,7 @@ class TodoListEdit extends Component {
           </div>
         </div>
         <div className="modal-footer">
-          <a href="#!" className="modal-close waves-effect waves-light btn" >
+          <a href="#!" className="modal-close waves-effect waves-light btn">
             Save
           </a>
           <span> </span>
@@ -57,9 +55,4 @@ class TodoListEdit extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    todoValue: state.editValue
-  };
-};
-export default connect(mapStateToProps)(TodoListEdit);
+export default TodoListEdit;

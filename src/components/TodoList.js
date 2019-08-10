@@ -4,7 +4,7 @@ class TodoList extends Component {
 
   render() {
     return (
-      <div className="row">
+      <div>
         <ul className="collection">{this.props.children}</ul>
       </div>
     );
