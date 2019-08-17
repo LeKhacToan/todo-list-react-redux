@@ -11,8 +11,6 @@ class TodoListFilter extends Component {
     this.handleChange = this.handleChange.bind(this);   
   }
 
- 
-
   handleChange(e) {
     const value = e.target.value;
     if (value === SHOW_ACTIVE) this.props.actions.showActive();
